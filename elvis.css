@@ -1,0 +1,182 @@
+/*--------------------------------------
+      Global Styles
+    ---------------------------------------*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden; /* Prevent scrolling */
+  background-color: #000; /* Dark background */
+  color: #fff;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/*--------------------------------------
+      Canvas Background
+      Animated Red Star with Two Red Spiders
+    ---------------------------------------*/
+#backgroundCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Behind the profile card */
+}
+
+/*--------------------------------------
+      Profile Card
+    ---------------------------------------*/
+.profile-card {
+  position: relative;
+  z-index: 1;
+  background-color: #111;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+/* Animated Neon Border */
+.profile-card::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 20px;
+  background: linear-gradient(270deg, #ff0000, #ff4b4b, #ff0000, #ff4b4b);
+  background-size: 600% 600%;
+  z-index: -1;
+  animation: borderAnimation 6s linear infinite;
+}
+
+@keyframes borderAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Profile Image */
+.profile-card__image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ff0000;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+/* Profile Content (Bio + Social) */
+.profile-card__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Profile Name */
+.profile-card__name {
+  font-size: 18px; /* smaller */
+  font-weight: 600; /* bold but not too heavy */
+  font-family: "Poppins", sans-serif;
+  color: #ff4b4b;
+  margin-bottom: 8px;
+}
+
+/* Bio */
+.profile-card__bio {
+  font-size: 13px; /* smaller for cleaner look */
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+  color: #ccc;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+}
+
+/* Bio 
+.profile-card__bio {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 15px;
+}*/
+
+/* Social Links */
+.profile-card__social {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.profile-card__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Circle container */
+  background-color: #ff0000;
+  overflow: hidden; /* Ensure the image doesn’t overflow the circle */
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.profile-card__social-link img {
+  width: 100%; /* Fill the circle */
+  height: 100%; /* Fill the circle */
+  object-fit: cover; /* Crop if needed to maintain circle */
+  border-radius: 50%; /* Make image itself circular */
+}
+
+.profile-card__social-link:hover {
+  background-color: #ff4b4b;
+}
+
+/*--------------------------------------
+      Responsive Design
+    ---------------------------------------*/
+@media (max-width: 600px) {
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .profile-card__image {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+  .profile-card__bio {
+    font-size: 14px;
+  }
+  .profile-card__social-link {
+    width: 35px;
+    height: 35px;
+  }
+  .profile-card__social-link img {
+    width: 18px;
+    height: 18px;
+  }
+}
